@@ -9,6 +9,12 @@
   "author": "Benoit Lamonica & Félix Bouveret",
   "license": "ISC",
   "dependencies": {
-    "gulp": "^4.0.2"
+    "browser-sync": "^2.26.12",
+    "gulp": "^4.0.2",
+    "gulp-load-plugins": "^2.0.4",
+    "gulp-sass": "^4.1.0"
+  },
+  "devDependencies": {
+    "gulp-clean": "^0.4.0"
   }
 }
