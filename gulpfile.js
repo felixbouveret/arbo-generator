@@ -6,7 +6,7 @@ console.log(Plug);
 
 GulpClient.task('html-dev', () => {
     return GulpClient.src('./src/index.html')
-    .pipe(GulpClient.dest('./dist/index.html'));
+    .pipe(GulpClient.dest('./dist/'));
 });
 
 GulpClient.task('css-dev', () => {
@@ -24,12 +24,12 @@ GulpClient.task('clean-dist', () => {
 
 GulpClient.task('serve', () => {
     bs.init({
-        server : './src'
+        server : './dist'
     })
     GulpClient.watch("src/sass/*.scss", GulpClient.series('css-dev'));
     GulpClient.watch("src/*.html", GulpClient.series('html-dev')).on('change', bs.reload);
 });
 
-GulpClient.task('watch', GulpClient.series('serve', 'css-dev'));
+GulpClient.task('watch', GulpClient.series('css-dev', 'html-dev', 'serve'));
 
 GulpClient.task('default', GulpClient.series('watch'));
