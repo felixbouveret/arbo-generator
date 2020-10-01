@@ -36,6 +36,6 @@ GulpClient.task('serve', () => {
     GulpClient.watch("src/*.html", GulpClient.series('html-dev')).on('change', bs.reload);
 });
 
-GulpClient.task('watch', GulpClient.series('css-dev', 'html-dev', 'serve'));
+GulpClient.task('watch', GulpClient.series('css-dev', 'html-dev', 'js-dev', 'serve'));
 
 GulpClient.task('default', GulpClient.series('watch'));
