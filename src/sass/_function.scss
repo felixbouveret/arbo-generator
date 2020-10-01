@@ -1,18 +1,29 @@
-@mixin small {
-    @media (min-width : 540px) {
-        @content;
+@mixin above($arg) {
+
+    @if $arg == small{
+
+        @media (min-width : 540px) {
+            @content;
+        }
+
+    } @else if $arg == medium {
+
+        @media (min-width : 900px) {
+            @content;
+        }
+
+    } @else if $arg == large {
+
+        @media (min-width : 1200px) {
+            @content;
+        }
+
+    } @else {
+
+        @error "Wrong display '#{$arg}'";
+
     }
+    
 }
 
-@mixin medium {
-    @media (min-width : 900px) {
-        @content;
-    }
-}
-
-@mixin large {
-    @media (min-width : 1200px) {
-        @content;
-    }
-}
 
