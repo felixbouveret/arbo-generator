@@ -14,8 +14,13 @@ GulpClient.task('css-dev', () => {
     .pipe(Plug.sass().on('error', Plug.sass.logError))
     .pipe(GulpClient.dest('./dist/css/'))
     .pipe(bs.stream());
-})
+});
 
+GulpClient.task('js-dev', () => {
+    return GulpClient.src('./src/js/*.js')
+            .pipe(GulpClient.dest('./dist/js/'))
+            .pipe(bs.stream());
+});
 
 GulpClient.task('clean-dist', () => {
     return GulpClient.src("./dist/**/*")
@@ -27,6 +32,7 @@ GulpClient.task('serve', () => {
         server : './dist'
     });
     GulpClient.watch("src/sass/*.scss", GulpClient.series('css-dev'));
+    GulpClient.watch("src/js/*.js", GulpClient.series('js-dev'));
     GulpClient.watch("src/*.html", GulpClient.series('html-dev')).on('change', bs.reload);
 });
 
