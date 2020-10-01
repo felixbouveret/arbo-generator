@@ -25,7 +25,7 @@ GulpClient.task('clean-dist', () => {
 GulpClient.task('serve', () => {
     bs.init({
         server : './dist'
-    })
+    });
     GulpClient.watch("src/sass/*.scss", GulpClient.series('css-dev'));
     GulpClient.watch("src/*.html", GulpClient.series('html-dev')).on('change', bs.reload);
 });
