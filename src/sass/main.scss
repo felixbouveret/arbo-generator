@@ -1,12 +1,23 @@
-@import 'function';
+@import "function";
+@import "variable";
+@import "reset";
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  background-color: #11121b;
+  background-color: $root_color;
   color: white;
   padding: 0 5%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
     "Helvetica Neue", sans-serif;
+}
+
+h1 {
+  font-size: 3em;
+  margin: 0.5em 0;
 }
 
 ul,
@@ -15,11 +26,11 @@ li {
   padding: 0;
 }
 
-ul {
+.rootArbo {
   position: relative;
-  border-radius: 4px;
 
   ul {
+    position: relative;
     margin: 8px 0;
     padding-left: 16px;
 
@@ -33,14 +44,44 @@ ul {
       bottom: 0;
       background-color: #272b47;
       transition: background-color 0.3s;
+
+      @include small {
+        display: none;
+      }
     }
     &:hover:after {
       background-color: white;
     }
   }
-}
+  li {
+    position: relative;
+    padding: 8px;
+    margin-left: 64px;
 
-li {
-  position: relative;
-  padding: 8px;
+    @include small {
+      display: flex;
+      align-items: center;
+
+      span {
+        position: relative;
+        display: block;
+        padding: 8px;
+        border: solid white 2px;
+        border-radius: 4px;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background-color: white;
+          border: solid 4px $root_color;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: -1px;
+        }
+      }
+    }
+  }
 }
