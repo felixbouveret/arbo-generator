@@ -2,7 +2,6 @@
 
 var svgNS = "http://www.w3.org/2000/svg";
 let arbo = document.querySelector('ul.rootArbo')
-console.log(arbo.getBoundingClientRect())
 
 let wrapper = document.createElement('div')
     wrapper.setAttribute('class', 'arbo-wrapper')
@@ -34,15 +33,10 @@ setSvgBg = (container) => {
         let x2 = parseInt((parent.getBoundingClientRect().x + window.scrollX - wrapper.offsetLeft) + parent.getBoundingClientRect().width);
         let y2 = (parent.getBoundingClientRect().y + window.scrollY - wrapper.offsetTop) + parent.getBoundingClientRect().height / 2;
 
-    //console.log(x1, y1, ' et ', x2, y2)
+    let newPath = document.createElementNS(svgNS, 'path')
+    newPath.setAttributeNS(null, 'd', `M ${x1} ${y1} C ${x1-50} ${y1} ${x2+50} ${y2} ${x2} ${y2}`)
 
-    let newLine = document.createElementNS(svgNS, 'line')
-        newLine.setAttributeNS(null, 'x1', x1)
-        newLine.setAttributeNS(null, 'y1', y1)
-        newLine.setAttributeNS(null, 'x2', x2)
-        newLine.setAttributeNS(null, 'y2', y2)
-
-    container.append(newLine)
+    container.append(newPath)
 
     });
 }
@@ -61,3 +55,22 @@ window.onresize = () => {
     setSvgBg(svgBg);
 }
 
+const zoomElement = document.querySelector('.ag-zoom')
+
+if(zoomElement) {
+  let scale = 1
+
+  zoomElement.onwheel = (e) => {
+    e.preventDefault();
+    if (e.ctrlKey) {
+      // Your zoom/scale factor
+      // scale -= e.deltaY * 0.01;
+      scale -= e.deltaY * 0.01
+      if(scale < 0) {
+        scale = 0
+      }
+      arbo.setAttribute('style', `transform: scale(${scale})`)
+      svgBg.setAttribute('style', `transform: scale(${scale})`)
+    } 
+  }
+}
