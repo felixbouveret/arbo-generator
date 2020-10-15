@@ -85,3 +85,14 @@ li {
     }
   }
 }
+.arbo-wrapper {
+  position: relative;
+  svg {
+    position: absolute;
+    z-index: 0;
+    line {
+      stroke: white;
+    }
+  }
+
+}

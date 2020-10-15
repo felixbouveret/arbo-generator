@@ -22,7 +22,7 @@ GulpClient.task('js-dev', () => {
             .pipe(bs.stream());
 });
 
-GulpClient.task('clean-dist', () => {
+GulpClient.task('clean', () => {
     return GulpClient.src("./dist/**/*")
     .pipe(Plug.clean());
 });
@@ -37,5 +37,6 @@ GulpClient.task('serve', () => {
 });
 
 GulpClient.task('watch', GulpClient.series('css-dev', 'html-dev', 'js-dev', 'serve'));
+GulpClient.task('build', GulpClient.parallel('clean', 'css-dev', 'html-dev', 'js-dev'));
 
 GulpClient.task('default', GulpClient.series('watch'));
