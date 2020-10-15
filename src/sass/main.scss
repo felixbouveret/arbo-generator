@@ -28,7 +28,9 @@ li {
 
 .rootArbo {
   position: relative;
-
+  @include above(small) {
+    position: initial;
+  }
   ul {
     position: relative;
     margin: 8px 0;
@@ -52,12 +54,19 @@ li {
     &:hover:after {
       background-color: white;
     }
+    @include above(small) {
+      position: initial;
+    }
   }
   li {
     position: relative;
     padding: 8px;
+    &:first-child{
+      padding-top: 0;
+    }
 
     @include above(small) {
+      position: initial;
       display: flex;
       align-items: center;
       margin-left: 64px;
@@ -85,6 +94,7 @@ li {
     }
     svg {
       position: absolute;
+      border: solid white 1px;
     }
   }
 }
