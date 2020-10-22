@@ -16,8 +16,16 @@ body {
 }
 
 h1 {
+  display: block;
+  width: 100%;
+  background-color: $root_color;
   font-size: 3em;
-  margin: 0.5em 0;
+  margin: 0;
+  padding: .5em;
+  position: fixed;
+  top: 0;
+  left: 0em;
+  z-index: 99;
 }
 
 ul,
@@ -27,6 +35,7 @@ li {
 }
 
 .rootArbo {
+  margin-top: 5em;
   position: relative;
   width: fit-content;
 
@@ -83,7 +92,7 @@ li {
           position: absolute;
           width: 8px;
           height: 8px;
-          background-color: white;
+          background-color: $second_color;
           border: solid 4px $root_color;
           border-radius: 50%;
           transform: translate(-50%, -50%);
@@ -111,8 +120,8 @@ li {
     z-index: 0;
     path {
       fill: none;
-      stroke: white;
-      stroke-width: 2;
+      stroke: $second_color;
+      stroke-width: 3;
     }
   }
 }
