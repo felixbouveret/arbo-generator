@@ -55,6 +55,12 @@ window.onresize = () => {
   setSvgBg(svgBg);
 }
 
+
+setTimeout(() => {
+  document.querySelector('body').setAttribute('class', 'anim')
+}, 300);
+
+
 const zoomElement = document.querySelector('.ag-zoom')
 
 if (zoomElement) {

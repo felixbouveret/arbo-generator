@@ -10,22 +10,28 @@ body {
   margin: 0;
   background-color: $root_color;
   color: white;
-  padding: 0 5%;
+  padding: 0 24px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 h1 {
   display: block;
-  width: 100%;
-  background-color: $root_color;
   font-size: 3em;
   margin: 0;
-  padding: .5em;
-  position: fixed;
-  top: 0;
-  left: 0em;
-  z-index: 99;
+  padding: 16px 0;
+
+  @include above(small) {
+    background-color: rgba($root_color, 0.5);
+    padding: 16px 24px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    backdrop-filter: blur(24px);
+  }
 }
 
 ul,
@@ -35,11 +41,11 @@ li {
 }
 
 .rootArbo {
-  margin-top: 5em;
   position: relative;
   width: fit-content;
 
   @include above(small) {
+    margin-top: 80px;
     & > li > span::before {
       display: none;
     }
@@ -116,12 +122,25 @@ li {
 .arbo-wrapper {
   position: relative;
   svg {
+    display: none;
     position: absolute;
     z-index: 0;
+    @include above(small) {
+      display: block;
+    }
     path {
       fill: none;
       stroke: $second_color;
       stroke-width: 3;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: -1000;
+      transition: stroke-dashoffset 2s;
     }
+  }
+}
+
+.anim {
+  svg path {
+    stroke-dashoffset: 0;
   }
 }
